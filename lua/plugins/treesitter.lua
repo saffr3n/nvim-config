@@ -1,0 +1,29 @@
+return {
+  'nvim-treesitter/nvim-treesitter',
+  build = ':TSUpdate',
+  main = 'nvim-treesitter.configs',
+  opts = {
+    ensure_installed = {
+      'c',
+      'diff',
+      'javascript',
+      'jsdoc',
+      'json',
+      'lua',
+      'luadoc',
+      'markdown',
+      'markdown_inline',
+      'query',
+      'toml',
+      'typescript',
+      'vim',
+      'vimdoc',
+    },
+    auto_install = false,
+    highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = false,
+    },
+    indent = { enable = true },
+  },
+}
