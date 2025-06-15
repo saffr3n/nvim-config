@@ -22,6 +22,7 @@ This is my **personal** Neovim setup, crafted for my Ubuntu environment. It’s 
 
 - [Stable](https://github.com/neovim/neovim/releases/tag/stable) build of Neovim
 - Basic utils: `git`, `make`, `unzip`, `gcc`
+- Clipboard tool (e.g., `xclip`, `xsel`)
 - [ripgrep](https://github.com/BurntSushi/ripgrep#installation), [fd-find](https://github.com/sharkdp/fd#installation)
 - A [Nerd Font](https://www.nerdfonts.com/)
 
