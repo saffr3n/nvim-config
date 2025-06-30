@@ -5,6 +5,12 @@ vim.o.relativenumber = true
 
 vim.o.signcolumn = 'yes'
 
+vim.o.foldcolumn = '1'
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldlevel = 99
+vim.o.foldtext = ''
+
 vim.o.showmode = false
 
 vim.o.inccommand = 'split'
