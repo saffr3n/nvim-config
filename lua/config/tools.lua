@@ -3,7 +3,7 @@ local lsp_servers = {
   ts_ls = {},
 }
 
-local lsp_tools = {
+local null_tools = {
   cspell = function()
     local cspell = require('cspell')
     return {
@@ -33,7 +33,7 @@ local lsp_tools = {
 }
 
 local all_tools = vim.tbl_keys(lsp_servers)
-vim.list_extend(all_tools, vim.tbl_keys(lsp_tools))
+vim.list_extend(all_tools, vim.tbl_keys(null_tools))
 
 return {
   nvim_lspconfig = {
@@ -44,7 +44,7 @@ return {
     dependencies = { 'davidmh/cspell.nvim' },
     get_sources = function()
       local sources = {}
-      for _, get in pairs(lsp_tools) do
+      for _, get in pairs(null_tools) do
         vim.list_extend(sources, get())
       end
       return sources
