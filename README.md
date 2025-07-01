@@ -15,7 +15,7 @@ This is my **personal** Neovim setup, crafted for my Linux environment. It’s *
     │   ├── options.lua   # Core editor options (numbers, splits, indent, clipboard)
     │   ├── lazy.lua      # Bootstraps lazy.nvim and plugin specs import
     │   └── tools.lua     # LSP, formatter, and null-ls sources configuration
-    └── plugins/          # Individual plugin specs (auto-pairs, LSP, telescope, etc.)
+    └── plugins/          # Individual plugin specs (auto-pairs, LSP, snacks, etc.)
 ```
 
 ## Requirements
