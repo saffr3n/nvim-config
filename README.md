@@ -1,6 +1,6 @@
 # Neovim Configuration
 
-This is my **personal** Neovim setup, crafted for my Ubuntu environment. It’s **not** intended as a universally portable configuration.
+This is my **personal** Neovim setup, crafted for my Linux environment. It’s **not** intended as a universally portable configuration.
 
 ## Repo Structure
 
@@ -47,7 +47,7 @@ nvim
 
 ## Disclaimer
 
-- **No guarantees** this will work outside Ubuntu.
+- **No guarantees** this will work outside Linux.
 - **No detailed docs:** code is minimally commented (if at all).
 - **Use at your own risk** and modify freely.
 
