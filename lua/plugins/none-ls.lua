@@ -13,11 +13,7 @@ return {
     local null_ls = require('null-ls')
     null_ls.setup({ sources = tools.get_sources() })
     vim.keymap.set('n', '<leader>f', function()
-      vim.lsp.buf.format({
-        filter = function(c)
-          return c.name == 'null-ls'
-        end,
-      })
+      vim.lsp.buf.format({ filter = function(c) return c.name == 'null-ls' end })
     end)
   end,
 }

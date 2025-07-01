@@ -28,14 +28,10 @@ return {
       group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
       callback = function(event)
         local client = vim.lsp.get_client_by_id(event.data.client_id)
-        local clientSupportsMethod = function(method)
-          return client ~= nil and client:supports_method(method, event.buf)
-        end
+        local clientSupportsMethod = function(method) return client ~= nil and client:supports_method(method, event.buf) end
 
         local picker = require('snacks').picker
-        local map = function(keys, func)
-          vim.keymap.set('n', keys, func, { buffer = event.buf })
-        end
+        local map = function(keys, func) vim.keymap.set('n', keys, func, { buffer = event.buf }) end
 
         map('grn', vim.lsp.buf.rename)
         map('gra', vim.lsp.buf.code_action)
@@ -48,9 +44,10 @@ return {
         map('gW', picker.lsp_workspace_symbols)
 
         if clientSupportsMethod(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-          map('<leader>th', function()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-          end)
+          map(
+            '<leader>th',
+            function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) end
+          )
         end
 
         if clientSupportsMethod(vim.lsp.protocol.Methods.textDocument_documentHighlight) then

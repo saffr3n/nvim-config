@@ -8,9 +8,7 @@ local null_tools = {
     local cspell = require('cspell')
     return {
       cspell.diagnostics.with({
-        diagnostics_postprocess = function(diagnostic)
-          diagnostic.severity = vim.diagnostic.severity.HINT
-        end,
+        diagnostics_postprocess = function(diagnostic) diagnostic.severity = vim.diagnostic.severity.HINT end,
       }),
       cspell.code_actions,
     }
@@ -23,13 +21,9 @@ local null_tools = {
     }
   end,
 
-  prettierd = function()
-    return { require('null-ls').builtins.formatting.prettierd }
-  end,
+  prettierd = function() return { require('null-ls').builtins.formatting.prettierd } end,
 
-  stylua = function()
-    return { require('null-ls').builtins.formatting.stylua }
-  end,
+  stylua = function() return { require('null-ls').builtins.formatting.stylua } end,
 }
 
 local all_tools = vim.tbl_keys(lsp_servers)

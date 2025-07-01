@@ -14,95 +14,20 @@ return {
     terminal = {},
   },
   keys = {
-    {
-      '<leader>e',
-      function()
-        Snacks.explorer({ auto_close = false, hidden = true, ignored = true })
-      end,
-    },
-    {
-      '<leader>t',
-      function()
-        Snacks.terminal()
-      end,
-    },
-    {
-      '<leader>sh',
-      function()
-        Snacks.picker.help()
-      end,
-    },
-    {
-      '<leader>sk',
-      function()
-        Snacks.picker.keymaps()
-      end,
-    },
-    {
-      '<leader>sf',
-      function()
-        Snacks.picker.smart()
-      end,
-    },
-    {
-      '<leader>ss',
-      function()
-        Snacks.picker.pickers()
-      end,
-    },
-    {
-      '<leader>sw',
-      function()
-        Snacks.picker.grep_word()
-      end,
-    },
-    {
-      '<leader>sg',
-      function()
-        Snacks.picker.grep()
-      end,
-    },
-    {
-      '<leader>sd',
-      function()
-        Snacks.picker.diagnostics()
-      end,
-    },
-    {
-      '<leader>sr',
-      function()
-        Snacks.picker.resume()
-      end,
-    },
-    {
-      '<leader>s.',
-      function()
-        Snacks.picker.recent()
-      end,
-    },
-    {
-      '<leader>/',
-      function()
-        Snacks.picker.lines()
-      end,
-    },
-    {
-      '<leader>s/',
-      function()
-        Snacks.picker.grep_buffers()
-      end,
-    },
-    {
-      '<leader><leader>',
-      function()
-        Snacks.picker.buffers({ hidden = true })
-      end,
-    },
-    {
-      '<leader>sn',
-      function()
-        Snacks.picker.files({ cwd = vim.fn.stdpath('config') })
-      end,
-    },
+    { '<leader>e', function() Snacks.explorer({ auto_close = false, hidden = true, ignored = true }) end },
+    { '<leader>t', function() Snacks.terminal() end },
+    { '<leader>sh', function() Snacks.picker.help() end },
+    { '<leader>sk', function() Snacks.picker.keymaps() end },
+    { '<leader>sf', function() Snacks.picker.smart() end },
+    { '<leader>ss', function() Snacks.picker.pickers() end },
+    { '<leader>sw', function() Snacks.picker.grep_word() end },
+    { '<leader>sg', function() Snacks.picker.grep() end },
+    { '<leader>sd', function() Snacks.picker.diagnostics() end },
+    { '<leader>sr', function() Snacks.picker.resume() end },
+    { '<leader>s.', function() Snacks.picker.recent() end },
+    { '<leader>/', function() Snacks.picker.lines() end },
+    { '<leader>s/', function() Snacks.picker.grep_buffers() end },
+    { '<leader><leader>', function() Snacks.picker.buffers({ hidden = true }) end },
+    { '<leader>sn', function() Snacks.picker.files({ cwd = vim.fn.stdpath('config') }) end },
   },
 }
