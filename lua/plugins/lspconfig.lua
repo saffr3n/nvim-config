@@ -32,7 +32,7 @@ return {
           return client ~= nil and client:supports_method(method, event.buf)
         end
 
-        local builtin = require('telescope.builtin')
+        local picker = require('snacks').picker
         local map = function(keys, func)
           vim.keymap.set('n', keys, func, { buffer = event.buf })
         end
@@ -40,12 +40,12 @@ return {
         map('grn', vim.lsp.buf.rename)
         map('gra', vim.lsp.buf.code_action)
         map('grD', vim.lsp.buf.declaration)
-        map('grd', builtin.lsp_definitions)
-        map('grr', builtin.lsp_references)
-        map('gri', builtin.lsp_implementations)
-        map('grt', builtin.lsp_type_definitions)
-        map('gO', builtin.lsp_document_symbols)
-        map('gW', builtin.lsp_dynamic_workspace_symbols)
+        map('grd', picker.lsp_definitions)
+        map('grr', picker.lsp_references)
+        map('gri', picker.lsp_implementations)
+        map('grt', picker.lsp_type_definitions)
+        map('gO', picker.lsp_symbols)
+        map('gW', picker.lsp_workspace_symbols)
 
         if clientSupportsMethod(vim.lsp.protocol.Methods.textDocument_inlayHint) then
           map('<leader>th', function()
