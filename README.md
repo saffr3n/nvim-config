@@ -25,6 +25,7 @@ This is my **personal** Neovim setup, crafted for my Linux environment. It’s *
 - Clipboard tool (e.g., `xclip`, `xsel`)
 - [ripgrep](https://github.com/BurntSushi/ripgrep#installation), [fd-find](https://github.com/sharkdp/fd#installation)
 - A [Nerd Font](https://www.nerdfonts.com/)
+- [lazygit](https://github.com/jesseduffield/lazygit)
 
 ## Installation
 

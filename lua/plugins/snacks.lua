@@ -14,6 +14,7 @@ return {
   },
   keys = {
     { '<leader>e', function() Snacks.explorer({ auto_close = false, hidden = true, ignored = true }) end },
+    { '<leader>gg', function() Snacks.lazygit() end },
     { '<leader>t', function() Snacks.terminal() end },
     { '<leader>sh', function() Snacks.picker.help() end },
     { '<leader>sk', function() Snacks.picker.keymaps() end },
