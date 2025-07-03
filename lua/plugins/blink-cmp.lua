@@ -3,7 +3,7 @@ return {
   event = 'VimEnter',
   version = '1.*',
   dependencies = {
-    { 'L3MON4D3/LuaSnip', version = '2.*', opts = {} },
+    'rafamadriz/friendly-snippets',
     'folke/lazydev.nvim',
   },
   opts = {
@@ -18,7 +18,6 @@ return {
         lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
       },
     },
-    snippets = { preset = 'luasnip' },
     fuzzy = { implementation = 'lua' },
     signature = { enabled = true },
   },
