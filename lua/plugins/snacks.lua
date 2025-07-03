@@ -11,7 +11,6 @@ return {
     notifier = {},
     picker = {},
     statuscolumn = { folds = { open = true, git_hl = true } },
-    terminal = {},
   },
   keys = {
     { '<leader>e', function() Snacks.explorer({ auto_close = false, hidden = true, ignored = true }) end },
@@ -20,7 +19,7 @@ return {
     { '<leader>sk', function() Snacks.picker.keymaps() end },
     { '<leader>sf', function() Snacks.picker.smart() end },
     { '<leader>ss', function() Snacks.picker.pickers() end },
-    { '<leader>sw', function() Snacks.picker.grep_word() end },
+    { '<leader>sw', function() Snacks.picker.grep_word() end, mode = { 'n', 'v' } },
     { '<leader>sg', function() Snacks.picker.grep() end },
     { '<leader>sd', function() Snacks.picker.diagnostics() end },
     { '<leader>sr', function() Snacks.picker.resume() end },
