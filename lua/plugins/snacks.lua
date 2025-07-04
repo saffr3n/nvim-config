@@ -27,7 +27,7 @@ return {
     { '<leader>s.', function() Snacks.picker.recent() end },
     { '<leader>/', function() Snacks.picker.lines() end },
     { '<leader>s/', function() Snacks.picker.grep_buffers() end },
-    { '<leader><leader>', function() Snacks.picker.buffers({ hidden = true }) end },
+    { '<leader><leader>', function() Snacks.picker.buffers() end },
     { '<leader>sn', function() Snacks.picker.files({ cwd = vim.fn.stdpath('config') }) end },
   },
 }
