@@ -8,21 +8,14 @@ return {
     'saghen/blink.cmp',
   },
   config = function()
-    local capabilities = require('blink.cmp').get_lsp_capabilities()
-
     local tools = require('config.tools').nvim_lspconfig
     require('mason-tool-installer').setup({ ensure_installed = tools.ensure_installed })
-    require('mason-lspconfig').setup({
-      ensure_installed = {},
-      automatic_installation = false,
-      handlers = {
-        function(server_name)
-          local server = tools.servers[server_name] or {}
-          server.capabilities = vim.tbl_deep_extend('force', server.capabilities or {}, capabilities)
-          require('lspconfig')[server_name].setup(server)
-        end,
-      },
-    })
+    for name, config in pairs(tools.servers) do
+      if not vim.tbl_isempty(config) then
+        vim.lsp.config(name, config)
+      end
+    end
+    require('mason-lspconfig').setup({ ensure_installed = {}, automatic_enable = true })
 
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
