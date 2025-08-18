@@ -66,19 +66,42 @@ return {
           })
         end
 
-        vim.diagnostic.config({
-          severity_sort = true,
-          jump = { float = true },
-          float = { border = 'rounded', source = 'if_many' },
-          virtual_text = { source = 'if_many', spacing = 2 },
-          signs = {
-            text = {
-              [vim.diagnostic.severity.ERROR] = '󰅚 ',
-              [vim.diagnostic.severity.WARN] = '󰀪 ',
-              [vim.diagnostic.severity.INFO] = '󰋽 ',
-              [vim.diagnostic.severity.HINT] = '󰌶 ',
-            },
-          },
+        map('<leader>td', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end)
+
+        local function set_virtual_text(enable)
+          local icons = {
+            [vim.diagnostic.severity.ERROR] = '󰅚 ',
+            [vim.diagnostic.severity.WARN] = '󰀪 ',
+            [vim.diagnostic.severity.INFO] = '󰋽 ',
+            [vim.diagnostic.severity.HINT] = '󰌶 ',
+          }
+
+          vim.diagnostic.config({
+            update_in_insert = true,
+            severity_sort = true,
+            signs = { text = icons },
+            float = { border = 'rounded', source = 'if_many' },
+            virtual_text = enable
+                and {
+                  source = 'if_many',
+                  spacing = 2,
+                  format = function(diagnostic) return (icons[diagnostic.severity] or '') .. diagnostic.message end,
+                }
+              or false,
+            virtual_lines = not enable
+                and {
+                  format = function(diagnostic) return (icons[diagnostic.severity] or '') .. diagnostic.message end,
+                }
+              or false,
+          })
+        end
+
+        vim.api.nvim_create_autocmd('InsertEnter', {
+          callback = function() set_virtual_text(true) end,
+        })
+
+        vim.api.nvim_create_autocmd('InsertLeave', {
+          callback = function() set_virtual_text(false) end,
         })
       end,
     })
