@@ -1,6 +1,9 @@
 local lsp_servers = {
+  cssls = {},
+  html = {},
   lua_ls = {},
   ts_ls = {},
+  emmet_language_server = {},
 }
 
 local null_tools = {

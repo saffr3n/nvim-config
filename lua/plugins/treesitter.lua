@@ -1,11 +1,15 @@
 return {
   'nvim-treesitter/nvim-treesitter',
+  lazy = false,
+  branch = 'master',
   build = ':TSUpdate',
   main = 'nvim-treesitter.configs',
   opts = {
     ensure_installed = {
       'c',
+      'css',
       'diff',
+      'html',
       'javascript',
       'jsdoc',
       'json',
