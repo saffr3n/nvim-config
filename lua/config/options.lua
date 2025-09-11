@@ -19,6 +19,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 vim.o.confirm = true
+vim.o.backupcopy = 'yes'
 
 vim.o.breakindent = true
 vim.o.linebreak = true
