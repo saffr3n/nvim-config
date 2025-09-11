@@ -3,6 +3,7 @@ local lsp_servers = {
   emmet_language_server = { filetypes = { 'html', 'css', 'ejs' } },
   html = { filetypes = { 'html', 'ejs' } },
   lua_ls = {},
+  prismals = {},
   ts_ls = {},
 }
 
