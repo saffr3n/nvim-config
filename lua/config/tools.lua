@@ -1,9 +1,9 @@
 local lsp_servers = {
   cssls = {},
-  html = {},
+  emmet_language_server = { filetypes = { 'html', 'css', 'ejs' } },
+  html = { filetypes = { 'html', 'ejs' } },
   lua_ls = {},
   ts_ls = {},
-  emmet_language_server = {},
 }
 
 local dap = {
