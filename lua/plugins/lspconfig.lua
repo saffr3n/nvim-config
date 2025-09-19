@@ -44,7 +44,7 @@ return {
         end
 
         if clientSupportsMethod(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-          local hl_group = vim.api.nvim_create_augroup('lsp-hl', { clear = true })
+          local hl_group = vim.api.nvim_create_augroup('lsp-hl', { clear = false })
           vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
             buffer = event.buf,
             group = hl_group,
