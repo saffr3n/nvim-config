@@ -1,6 +1,6 @@
 local lsp_servers = {
   cssls = {},
-  emmet_language_server = { filetypes = { 'html', 'css', 'ejs' } },
+  emmet_language_server = { filetypes = { 'html', 'css', 'ejs', 'javascriptreact' } },
   html = { filetypes = { 'html', 'ejs' } },
   lua_ls = {},
   prismals = {},
