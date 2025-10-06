@@ -10,6 +10,7 @@ return {
     input = {},
     notifier = {},
     picker = {},
+    scope = {},
     statuscolumn = { folds = { open = true, git_hl = true } },
   },
   keys = {
