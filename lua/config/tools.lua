@@ -33,16 +33,6 @@ local dap = {
 }
 
 local null_tools = {
-  cspell = function()
-    local cspell = require('cspell')
-    return {
-      cspell.diagnostics.with({
-        diagnostics_postprocess = function(diagnostic) diagnostic.severity = vim.diagnostic.severity.HINT end,
-      }),
-      cspell.code_actions,
-    }
-  end,
-
   eslint_d = function()
     return {
       require('none-ls.diagnostics.eslint_d'),
