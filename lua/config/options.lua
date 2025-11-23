@@ -45,6 +45,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('hl-yank', { clear = true }),
   callback = function() vim.hl.on_yank() end,
 })
-
-vim.filetype.add({ extension = { ejs = 'ejs' } })
-vim.treesitter.language.register('embedded_template', { 'ejs' })

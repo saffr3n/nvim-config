@@ -9,7 +9,6 @@ return {
       'c',
       'css',
       'diff',
-      'embedded_template',
       'html',
       'javascript',
       'jsdoc',
