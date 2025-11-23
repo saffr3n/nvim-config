@@ -3,6 +3,12 @@ return {
   config = function()
     require('mini.ai').setup()
     require('mini.surround').setup()
+    require('mini.pairs').setup({
+      mappings = {
+        ['<'] = { action = 'open', pair = '<>', neigh_pattern = '[%w_]' },
+        ['>'] = { action = 'close', pair = '<>' },
+      },
+    })
 
     local statusline = require('mini.statusline')
     statusline.setup()
