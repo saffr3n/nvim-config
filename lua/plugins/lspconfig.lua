@@ -43,29 +43,6 @@ return {
           )
         end
 
-        if clientSupportsMethod(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-          local hl_group = vim.api.nvim_create_augroup('lsp-hl', { clear = false })
-          vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-            buffer = event.buf,
-            group = hl_group,
-            callback = vim.lsp.buf.document_highlight,
-          })
-
-          vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-            buffer = event.buf,
-            group = hl_group,
-            callback = vim.lsp.buf.clear_references,
-          })
-
-          vim.api.nvim_create_autocmd('LspDetach', {
-            group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
-            callback = function(event2)
-              vim.lsp.buf.clear_references()
-              vim.api.nvim_clear_autocmds({ group = 'lsp-hl', buffer = event2.buf })
-            end,
-          })
-        end
-
         map('<leader>td', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end)
 
         local function set_virtual_text(enable)

@@ -12,6 +12,7 @@ return {
     picker = {},
     scope = {},
     statuscolumn = { folds = { open = true, git_hl = true } },
+    words = {},
   },
   keys = {
     { '<leader>e', function() Snacks.explorer({ auto_close = false, hidden = true, ignored = true }) end },
