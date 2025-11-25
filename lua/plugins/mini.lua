@@ -11,9 +11,9 @@ return {
     })
 
     local statusline = require('mini.statusline')
-    statusline.setup()
     ---@diagnostic disable-next-line: duplicate-set-field
-    statusline.section_location = function() return '%2l:%-2v' end
+    statusline.section_location = function() return '%l:%v' end
+    statusline.setup()
 
     local diff = require('mini.diff')
     require('config.utils').map('n', '<Leader>tg', diff.toggle_overlay)
