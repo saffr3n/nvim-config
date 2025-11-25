@@ -17,6 +17,6 @@ return {
 
     local diff = require('mini.diff')
     require('config.utils').map('n', '<Leader>tg', diff.toggle_overlay)
-    diff.setup({ view = { style = 'sign' } })
+    diff.setup()
   end,
 }
