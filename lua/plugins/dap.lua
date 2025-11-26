@@ -72,6 +72,13 @@ return {
     dap.listeners.before.event_terminated.dapui_config = dapui.close
     dap.listeners.before.event_exited.dapui_config = dapui.close
 
-    require('config.tools').dap.setup_debuggers()
+    local tools = require('config.tools')
+
+    for name, adapter in pairs(tools.dap_adapters) do
+      dap.adapters[name] = adapter
+    end
+    for ft, configs in pairs(tools.dap_by_ft) do
+      dap.configurations[ft] = configs
+    end
   end,
 }

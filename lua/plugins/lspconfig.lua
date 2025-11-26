@@ -8,10 +8,11 @@ return {
     'saghen/blink.cmp',
   },
   config = function()
-    local tools = require('config.tools').nvim_lspconfig
-    require('mason-tool-installer').setup({ ensure_installed = tools.ensure_installed })
-    for name, config in pairs(tools.servers) do
+    local tools = require('config.tools')
+    require('mason-tool-installer').setup({ enuree_installed = tools.ensure_installed.mason })
+    for name, config in pairs(tools.lsp_servers) do
       if not vim.tbl_isempty(config) then
+        config = vim.tbl_deep_extend('force', vim.lsp.config[name], config)
         vim.lsp.config(name, config)
       end
     end
