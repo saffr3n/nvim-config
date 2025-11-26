@@ -21,66 +21,21 @@ return {
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
       callback = function(event)
-        local client = vim.lsp.get_client_by_id(event.data.client_id)
-        local clientSupportsMethod = function(method) return client ~= nil and client:supports_method(method, event.buf) end
+        ---@param mode string|string[]
+        ---@param lhs string
+        ---@param rhs string|function
+        local function map(mode, lhs, rhs) require('config.utils').map(mode, lhs, rhs, { buffer = event.buf }) end
 
-        local picker = require('snacks').picker
-        local map = function(keys, func) vim.keymap.set('n', keys, func, { buffer = event.buf }) end
+        map('n', '<Leader>th', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end)
+        map('n', 'grd', Snacks.picker.lsp_definitions)
+        map('n', 'grD', Snacks.picker.lsp_declarations)
+        map('n', 'grr', Snacks.picker.lsp_references)
+        map('n', 'gri', Snacks.picker.lsp_implementations)
+        map('n', 'grt', Snacks.picker.lsp_type_definitions)
+        map('n', 'gO', Snacks.picker.lsp_symbols)
+        map('n', 'gW', Snacks.picker.lsp_workspace_symbols)
 
-        map('grn', vim.lsp.buf.rename)
-        map('gra', vim.lsp.buf.code_action)
-        map('grD', vim.lsp.buf.declaration)
-        map('grd', picker.lsp_definitions)
-        map('grr', picker.lsp_references)
-        map('gri', picker.lsp_implementations)
-        map('grt', picker.lsp_type_definitions)
-        map('gO', picker.lsp_symbols)
-        map('gW', picker.lsp_workspace_symbols)
-
-        if clientSupportsMethod(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-          map(
-            '<leader>th',
-            function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) end
-          )
-        end
-
-        map('<leader>td', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end)
-
-        local function set_virtual_text(enable)
-          local icons = {
-            [vim.diagnostic.severity.ERROR] = '󰅚 ',
-            [vim.diagnostic.severity.WARN] = '󰀪 ',
-            [vim.diagnostic.severity.INFO] = '󰋽 ',
-            [vim.diagnostic.severity.HINT] = '󰌶 ',
-          }
-
-          vim.diagnostic.config({
-            update_in_insert = true,
-            severity_sort = true,
-            signs = { text = icons },
-            float = { border = 'rounded', source = 'if_many' },
-            virtual_text = enable
-                and {
-                  source = 'if_many',
-                  spacing = 2,
-                  format = function(diagnostic) return (icons[diagnostic.severity] or '') .. diagnostic.message end,
-                }
-              or false,
-            virtual_lines = not enable
-                and {
-                  format = function(diagnostic) return (icons[diagnostic.severity] or '') .. diagnostic.message end,
-                }
-              or false,
-          })
-        end
-
-        vim.api.nvim_create_autocmd('InsertEnter', {
-          callback = function() set_virtual_text(true) end,
-        })
-
-        vim.api.nvim_create_autocmd('InsertLeave', {
-          callback = function() set_virtual_text(false) end,
-        })
+        vim.diagnostic.config({ severity_sort = true, virtual_text = true })
       end,
     })
   end,
