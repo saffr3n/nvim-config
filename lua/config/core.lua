@@ -3,6 +3,7 @@ local map = require('config.utils').map
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 map('n', '<Esc>', vim.cmd.nohlsearch)
+map('n', '<Leader>u', vim.cmd.Undotree)
 
 vim.o.number = true
 vim.o.relativenumber = true
@@ -38,6 +39,11 @@ vim.o.smartcase = true
 vim.o.inccommand = 'split'
 -- vim.o.completeopt = 'menuone,noselect,fuzzy,popup'
 -- vim.o.wildmode = 'noselect:lastused,full'
+
+vim.api.nvim_create_autocmd('VimEnter', {
+  once = true,
+  callback = function() vim.cmd.packadd('nvim.undotree') end,
+})
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('yank-hl', { clear = true }),
