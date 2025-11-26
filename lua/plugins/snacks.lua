@@ -1,8 +1,12 @@
+---@module 'lazy'
+---@type LazyPluginSpec
 return {
   'folke/snacks.nvim',
   priority = 1000,
   lazy = false,
   dependencies = { 'nvim-tree/nvim-web-devicons' },
+  ---@module 'snacks'
+  ---@type snacks.Config
   opts = {
     dashboard = {},
     explorer = {},

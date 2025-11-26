@@ -1,5 +1,9 @@
+---@module 'lazy'
+---@type LazyPluginSpec
 return {
   'nvim-mini/mini.nvim',
+  version = '*',
+  lazy = false,
   config = function()
     require('mini.icons').setup()
     require('mini.ai').setup()

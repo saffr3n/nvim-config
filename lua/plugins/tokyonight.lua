@@ -1,5 +1,8 @@
+---@module 'lazy'
+---@type LazyPluginSpec
 return {
   'folke/tokyonight.nvim',
+  lazy = false,
   priority = 1000,
   config = function()
     ---@diagnostic disable-next-line: missing-fields

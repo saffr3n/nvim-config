@@ -1,5 +1,8 @@
+---@module 'lazy'
+---@type LazyPluginSpec
 return {
   'neovim/nvim-lspconfig',
+  lazy = false,
   dependencies = { { 'j-hui/fidget.nvim', opts = {} } },
   config = function()
     local servers = require('config.tools').lsp_servers
@@ -12,6 +15,7 @@ return {
 
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
+      ---@param event vim.api.keyset.create_autocmd.callback_args|{ data: { client_id: integer } }
       callback = function(event)
         ---@param mode string|string[]
         ---@param lhs string
