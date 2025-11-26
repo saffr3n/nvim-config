@@ -1,22 +1,14 @@
 return {
   'neovim/nvim-lspconfig',
-  dependencies = {
-    { 'mason-org/mason.nvim', opts = {} },
-    'mason-org/mason-lspconfig.nvim',
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
-    { 'j-hui/fidget.nvim', opts = {} },
-    'saghen/blink.cmp',
-  },
+  dependencies = { { 'j-hui/fidget.nvim', opts = {} } },
   config = function()
-    local tools = require('config.tools')
-    require('mason-tool-installer').setup({ enuree_installed = tools.ensure_installed.mason })
-    for name, config in pairs(tools.lsp_servers) do
+    local servers = require('config.tools').lsp_servers
+    for name, config in pairs(servers) do
       if not vim.tbl_isempty(config) then
         config = vim.tbl_deep_extend('force', vim.lsp.config[name], config)
         vim.lsp.config(name, config)
       end
     end
-    require('mason-lspconfig').setup({ ensure_installed = {}, automatic_enable = true })
 
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
