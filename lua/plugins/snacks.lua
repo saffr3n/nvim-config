@@ -30,10 +30,11 @@ return {
       animate = { enabled = false },
     },
     input = {},
+    lazygit = {},
     notifier = {},
     picker = {},
     scope = {},
-    statuscolumn = { folds = { open = true, git_hl = true } },
+    terminal = {},
     words = {},
   },
   keys = {
