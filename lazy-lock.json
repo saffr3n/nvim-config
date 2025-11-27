@@ -10,6 +10,7 @@
   "mini.nvim": { "branch": "main", "commit": "9a2798a584a55ccd3027a7e36f38971da619c9a2" },
   "nvim-dap": { "branch": "master", "commit": "48570d8372f63c9e9ba399a16606f9553034a9b2" },
   "nvim-lspconfig": { "branch": "master", "commit": "e688b486fe9291f151eae7e5c0b5a5c4ef980847" },
+  "nvim-lint": { "branch": "master", "commit": "d1118791070d090777398792a73032a0ca5c79ff" },
   "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
   "snacks.nvim": { "branch": "main", "commit": "bfe8c26dbd83f7c4fbc222787552e29b4eccfcc0" },
   "tokyonight.nvim": { "branch": "main", "commit": "4d159616aee17796c2c94d2f5f87d2ee1a3f67c7" },
