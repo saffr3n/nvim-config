@@ -32,7 +32,7 @@ return {
     input = {},
     lazygit = {},
     notifier = {},
-    picker = {},
+    picker = { sources = { explorer = { auto_close = true } } },
     scope = {},
     terminal = {},
     words = {},
