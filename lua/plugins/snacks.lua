@@ -24,7 +24,11 @@ return {
       },
     },
     explorer = {},
-    indent = {},
+    indent = {
+      indent = { char = '▏' },
+      scope = { char = '▏' },
+      animate = { enabled = false },
+    },
     input = {},
     notifier = {},
     picker = {},
