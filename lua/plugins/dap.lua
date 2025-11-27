@@ -2,78 +2,8 @@
 ---@type LazyPluginSpec
 return {
   'mfussenegger/nvim-dap',
-  dependencies = {
-    'rcarriga/nvim-dap-ui',
-    'nvim-neotest/nvim-nio',
-    'mason-org/mason.nvim',
-    'jay-babu/mason-nvim-dap.nvim',
-    'theHamsta/nvim-dap-virtual-text',
-  },
-  keys = {
-    {
-      '<F5>',
-      function() require('dap').continue() end,
-    },
-    {
-      '<F1>',
-      function() require('dap').step_into() end,
-    },
-    {
-      '<F2>',
-      function() require('dap').step_over() end,
-    },
-    {
-      '<F3>',
-      function() require('dap').step_out() end,
-    },
-    {
-      '<leader>b',
-      function() require('dap').toggle_breakpoint() end,
-    },
-    {
-      '<leader>B',
-      function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
-    },
-    {
-      '<F7>',
-      function() require('dapui').toggle() end,
-    },
-  },
   config = function()
     local dap = require('dap')
-    local dapui = require('dapui')
-
-    require('nvim-dap-virtual-text').setup({})
-
-    require('mason-nvim-dap').setup({
-      automatic_installation = true,
-      handlers = {},
-      ensure_installed = {},
-    })
-
-    ---@diagnostic disable-next-line: missing-fields
-    dapui.setup({
-      icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
-      ---@diagnostic disable-next-line: missing-fields
-      controls = {
-        icons = {
-          pause = '⏸',
-          play = '▶',
-          step_into = '⏎',
-          step_over = '⏭',
-          step_out = '⏮',
-          step_back = 'b',
-          run_last = '▶▶',
-          terminate = '⏹',
-          disconnect = '⏏',
-        },
-      },
-    })
-
-    dap.listeners.after.event_initialized.dapui_config = dapui.open
-    dap.listeners.before.event_terminated.dapui_config = dapui.close
-    dap.listeners.before.event_exited.dapui_config = dapui.close
-
     local tools = require('config.tools')
 
     for name, adapter in pairs(tools.dap_adapters) do
@@ -82,5 +12,34 @@ return {
     for ft, configs in pairs(tools.dap_by_ft) do
       dap.configurations[ft] = configs
     end
+
+    vim.fn.sign_define('DapBreakpoint', { text = '⦁', texthl = 'DiagnosticError' })
+    vim.fn.sign_define('DapBreakpointRejected', { text = '⦁', texthl = 'DiagnosticWarn' })
+    vim.fn.sign_define('DapStopped', { text = '→', texthl = 'DiagnosticWarn' })
   end,
+  keys = {
+    { '<F5>', function() require('dap').continue() end },
+    { '<F1>', function() require('dap').step_into() end },
+    { '<F2>', function() require('dap').step_over() end },
+    { '<F3>', function() require('dap').step_out() end },
+    { '<Leader>b', function() require('dap').toggle_breakpoint() end },
+    { '<Leader>B', function() require('dap').clear_breakpoints() end },
+    { '<Leader>dk', function() require('dap.ui.widgets').hover() end },
+    {
+      '<Leader>df',
+      function()
+        local widgets = require('dap.ui.widgets')
+        widgets.centered_float(widgets.frames)
+      end,
+    },
+    {
+      '<Leader>ds',
+      function()
+        local widgets = require('dap.ui.widgets')
+        widgets.centered_float(widgets.scopes)
+      end,
+    },
+    { 'q', function() vim.cmd.bwipeout() end, ft = 'dap-float' },
+    { '<Esc>', function() vim.cmd.bwipeout() end, ft = 'dap-float' },
+  },
 }
